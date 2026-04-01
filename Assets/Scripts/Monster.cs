@@ -6,6 +6,8 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public float spd = 1.0f;
+    public GameObject preEx;
+    GameObject target;
     Vector3 direct = Vector3.down;
 
     private void Start()
@@ -14,7 +16,7 @@ public class Monster : MonoBehaviour
 
         if(rndNum % 3 == 0)
         {
-            GameObject target = GameObject.Find("Character");
+            target = GameObject.Find("Character");
 
             direct = target.transform.position - transform.position;
 
@@ -32,6 +34,10 @@ public class Monster : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject ex = Instantiate(preEx);
+        ex.transform.position = transform.position;
+
+
         Destroy(collision.gameObject);
 
         Destroy(gameObject);
