@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BG : MonoBehaviour
 {
-    public Material mBG;
+    public Material materialBG;
+    public float scrollSpd = 0.3f;
 
-
-    void Update()
+    private void Update()
     {
-        
+        Vector2 direction = Vector2.up;
+        materialBG.mainTextureOffset += direction * scrollSpd * Time.deltaTime;
     }
 }
