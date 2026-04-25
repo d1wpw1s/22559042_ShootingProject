@@ -6,19 +6,15 @@ public class BulletFire : MonoBehaviour
 {
     public GameObject bulletObject;
     public GameObject bulletFireObject;
+    public float fireRate = 0.5f;
+    private float nextFireTime = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         bool isFire = Input.GetButtonDown("Jump");
-        if (isFire)
+        if (isFire && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + fireRate;
             GameObject bullet = Instantiate(bulletObject);
             bullet.transform.position = bulletFireObject.transform.position;
         }
